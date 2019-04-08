@@ -10,20 +10,18 @@ const app = express();
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
-//DB Config
+// DB Config
 const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
   .connect(db)
-  .then(() => console.log("Mongo DB Connected"))
+  .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-app.get("/", (req, res) => {
-  res.send("GET request to the homepage");
-});
+app.get("/", (req, res) => res.send("Hello World"));
 
 // Use Routes
 app.use("/api/users", users);
